@@ -1,0 +1,234 @@
+/* cards-hero-promo -- "deconstructed hero" mosaic migrated from broadridge.com
+   Values derived from getComputedStyle on the source block.
+   See migration-work/cards-hero-promo-extracted.css for the reference dump. */
+
+.cards-hero-promo {
+  --chp-card-bg: #001f5a;          /* rgb(0, 31, 90)   primary + promo card */
+  --chp-badge-bg: #0f3db5;         /* rgb(15, 61, 181) category pill */
+  --chp-cta-color: #2662fc;        /* rgb(38, 98, 252) CTA text / arrow accent */
+  --chp-text: #fff;
+  --chp-radius: 4px;
+  --chp-gap: 8px;
+
+  background-color: #00102f;
+  padding: 24px 16px;
+}
+
+/* full-bleed dark background: the source section shows the page's dark backdrop
+   through the gaps between cards */
+.cards-hero-promo-wrapper {
+  max-width: 100% !important;
+  padding: 0 !important;
+}
+
+.cards-hero-promo > ul {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  max-width: 1360px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--chp-gap);
+}
+
+/* -------- card shell (shared by primary + promo) -------- */
+.cards-hero-promo > ul > li {
+  position: relative;
+  display: grid;
+  border: 0;
+  border-radius: var(--chp-radius);
+  background-color: var(--chp-card-bg);
+  color: var(--chp-text);
+  overflow: hidden;
+}
+
+/* media layer sits behind the body (grid-cover technique) */
+.cards-hero-promo .cards-hero-promo-card-image {
+  grid-area: 1 / 1;
+  line-height: 0;
+  height: 100%;
+}
+
+.cards-hero-promo .cards-hero-promo-card-image picture,
+.cards-hero-promo .cards-hero-promo-card-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* content layer stacks on top of the media layer */
+.cards-hero-promo .cards-hero-promo-card-body {
+  grid-area: 1 / 1;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+}
+
+.cards-hero-promo .cards-hero-promo-card-body :is(h1, h2, h3, p) {
+  margin: 0;
+  color: var(--chp-text);
+  font-family: var(--body-font-family);
+}
+
+/* -------- primary UNIFY card -------- */
+.cards-hero-promo-primary .cards-hero-promo-card-body {
+  justify-content: flex-start;
+}
+
+.cards-hero-promo-primary h1 {
+  font-family: var(--body-font-family);
+  font-size: 72px;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+/* the description paragraph (first non-heading, non-button paragraph) */
+.cards-hero-promo-primary .cards-hero-promo-card-body > p:not(:has(a)) {
+  max-width: 32ch;
+  font-size: 26px;
+  font-weight: 300;
+  line-height: 1.15;
+}
+
+/* push the CTA to the bottom of the primary card */
+.cards-hero-promo-primary .cards-hero-promo-card-body > p:has(> a.cards-hero-promo-cta) {
+  margin-top: auto;
+}
+
+/* -------- primary CTA button (white pill w/ blue label + arrow) -------- */
+.cards-hero-promo a.cards-hero-promo-cta {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 2px;
+  padding: 16px 24px;
+  background-color: #fff;
+  color: var(--chp-cta-color);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.cards-hero-promo a.cards-hero-promo-cta:hover,
+.cards-hero-promo a.cards-hero-promo-cta:focus-visible {
+  background-color: #f0f4ff;
+  color: var(--chp-cta-color);
+  text-decoration: none;
+}
+
+/* -------- promo cards (PRESS RELEASE / INSIGHTS) -------- */
+.cards-hero-promo > ul > li:not(.cards-hero-promo-primary) .cards-hero-promo-card-body {
+  justify-content: space-between;
+}
+
+.cards-hero-promo > ul > li:not(.cards-hero-promo-primary) h3 {
+  font-family: var(--body-font-family);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+/* category pill */
+.cards-hero-promo p.cards-hero-promo-badge {
+  align-self: flex-start;
+  display: inline-block;
+  border-radius: 2px;
+  padding: 2px 8px;
+  background-color: var(--chp-badge-bg);
+  color: var(--chp-text);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.15;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+/* the whole promo card is a link; hide its label, show only an arrow affordance */
+.cards-hero-promo > ul > li:not(.cards-hero-promo-primary) a.cards-hero-promo-cta {
+  align-self: flex-start;
+  padding: 0;
+  background: none;
+  font-size: 0;
+  color: var(--chp-text);
+}
+
+.cards-hero-promo > ul > li:not(.cards-hero-promo-primary) a.cards-hero-promo-cta::after {
+  content: "";
+  display: block;
+  width: 24px;
+  height: 24px;
+  background-color: currentcolor;
+  mask: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"%3E%3Cpath fill-rule="evenodd" clip-rule="evenodd" d="M16.5805 11.0058L12.2904 6.71885C11.8904 6.31915 11.8904 5.68961 12.2894 5.2999C12.6794 4.9002 13.3094 4.9002 13.7094 5.2989L19.7094 11.2945C19.9603 11.5388 20.0498 11.8907 19.9778 12.2144C19.9264 12.453 19.789 12.6607 19.6 12.8032L13.6995 18.6992C13.5095 18.8791 13.2495 18.989 12.9895 18.989L12.9995 19C12.7295 19 12.4695 18.8901 12.2895 18.7102C11.8895 18.3205 11.8895 17.681 12.2795 17.2913V17.2813L16.5596 13.0043H5C4.44 13.0043 4 12.5547 4 12.0051C4 11.4455 4.44 11.0058 5 11.0058H16.5805Z" fill="black"%2F%3E%3C%2Fsvg%3E') no-repeat center / contain;
+}
+
+/* keep authored/EDS button decoration from overriding our CTA styling */
+.cards-hero-promo a.button,
+.cards-hero-promo .button-container {
+  all: unset;
+}
+
+/* -------- tablet: 2-column mosaic, primary spans both rows -------- */
+@media (width >= 600px) {
+  .cards-hero-promo {
+    --chp-gap: 16px;
+
+    padding: 32px 24px;
+  }
+
+  .cards-hero-promo > ul {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-auto-rows: 1fr;
+    gap: var(--chp-gap);
+  }
+
+  .cards-hero-promo-primary {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    min-height: 460px;
+  }
+
+  .cards-hero-promo > ul > li:not(.cards-hero-promo-primary) {
+    grid-column: 2;
+  }
+
+  .cards-hero-promo-primary .cards-hero-promo-card-body {
+    padding: 48px;
+  }
+
+  .cards-hero-promo-primary h1 {
+    font-size: 96px;
+  }
+}
+
+/* -------- desktop -------- */
+@media (width >= 900px) {
+  .cards-hero-promo {
+    padding: 48px 32px;
+  }
+
+  .cards-hero-promo > ul {
+    grid-template-columns: 2.08fr 1fr;
+  }
+
+  .cards-hero-promo-primary h1 {
+    font-size: 128px;
+  }
+
+  .cards-hero-promo-primary .cards-hero-promo-card-body > p:not(:has(a)) {
+    font-size: 36px;
+  }
+}
+
+@media (width >= 1200px) {
+  .cards-hero-promo-primary .cards-hero-promo-card-body {
+    padding: 64px;
+  }
+}
