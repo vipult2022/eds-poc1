@@ -1,0 +1,12 @@
+{
+  "status": "success",
+  "url": "https://www.broadridge.com/",
+  "path": "index",
+  "timestamp": "2026-07-23T13:18:02.355Z",
+  "title": "Broadridge - Broadridge | Global Leader - Financial Technology Solutions",
+  "template": "homepage",
+  "blocks": [
+    "cards-hero-promo",
+    "cards-feature"
+  ]
+}
