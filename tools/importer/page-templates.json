@@ -1,0 +1,60 @@
+{
+  "metadata": {
+    "projectType": "da"
+  },
+  "templates": [
+    {
+      "name": "homepage",
+      "representativeUrl": "https://www.broadridge.com/",
+      "urls": [
+        "https://www.broadridge.com/"
+      ],
+      "description": "Broadridge corporate home page",
+      "blocks": [
+        {
+          "name": "cards-hero-promo",
+          "instances": [
+            "main .section.hero-deconstructed"
+          ]
+        },
+        {
+          "name": "section-featured-solutions",
+          "instances": [
+            "main .section.featured-solutions"
+          ],
+          "section": "light"
+        },
+        {
+          "name": "cards-feature",
+          "instances": [
+            "main .section.featured-solutions .featured-solutions__card-grid"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "section-1",
+          "name": "hero-deconstructed",
+          "selector": "main .section.hero-deconstructed",
+          "style": null,
+          "blocks": [
+            "cards-hero-promo"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "section-2",
+          "name": "featured-solutions",
+          "selector": "main .section.featured-solutions",
+          "style": "light",
+          "blocks": [
+            "cards-feature"
+          ],
+          "defaultContent": [
+            "main .section.featured-solutions .section-header__heading h2"
+          ]
+        }
+      ]
+    }
+  ]
+}

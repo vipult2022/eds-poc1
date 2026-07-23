@@ -1,0 +1,134 @@
+/* cards-feature — "Featured solutions" grid of clickable cards.
+   Values extracted from https://www.broadridge.com/ (.featured-solutions__card-grid). */
+
+.cards-feature {
+  --cards-feature-bg: #e7f1fc;          /* rgb(231, 241, 252) pale blue card */
+  --cards-feature-ink: #000c36;         /* rgb(0, 12, 54) dark navy text */
+  --cards-feature-radius: 4px;
+}
+
+.cards-feature > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+.cards-feature > ul > li {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--cards-feature-bg);
+  border-radius: var(--cards-feature-radius);
+  color: var(--cards-feature-ink);
+  overflow: hidden;
+  cursor: pointer;
+  transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cards-feature > ul > li:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgb(0 12 54 / 12%);
+}
+
+/* image / illustration fills the top of the card, edge to edge */
+.cards-feature .cards-feature-card-image {
+  line-height: 0;
+}
+
+.cards-feature .cards-feature-card-image img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+/* body: title, description, and arrow cta pushed to the bottom */
+.cards-feature .cards-feature-card-body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+}
+
+.cards-feature .cards-feature-card-body h3 {
+  margin: 0;
+  color: var(--cards-feature-ink);
+  font-family: var(--body-font-family);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.cards-feature .cards-feature-card-body p {
+  margin: 0;
+  color: var(--cards-feature-ink);
+  font-family: var(--body-font-family);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+/* the trailing link becomes the arrow affordance at the bottom of the card */
+.cards-feature .cards-feature-card-body p:has(> a.cards-feature-cta) {
+  margin-top: auto;
+}
+
+.cards-feature a.cards-feature-cta {
+  display: inline-flex;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  overflow: hidden;
+  color: var(--cards-feature-ink);
+  text-indent: -9999px;
+  text-decoration: none;
+}
+
+.cards-feature a.cards-feature-cta::after {
+  content: "";
+  flex: 0 0 24px;
+  width: 24px;
+  height: 24px;
+  background-color: currentcolor;
+  text-indent: 0;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  mask: no-repeat center / 24px 24px;
+  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="black"><path fill-rule="evenodd" clip-rule="evenodd" d="M16.5805 11.0058L12.2904 6.71885C11.8904 6.31915 11.8904 5.68961 12.2894 5.2999C12.6794 4.9002 13.3094 4.9002 13.7094 5.2989L19.7094 11.2945C19.9603 11.5388 20.0498 11.8907 19.9778 12.2144C19.9264 12.453 19.789 12.6607 19.6 12.8032L13.6995 18.6992C13.5095 18.8791 13.2495 18.989 12.9895 18.989L12.9995 19C12.7295 19 12.4695 18.8901 12.2895 18.7102C11.8895 18.3205 11.8895 17.681 12.2795 17.2913V17.2813L16.5596 13.0043H5C4.44 13.0043 4 12.5547 4 12.0051C4 11.4455 4.44 11.0058 5 11.0058H16.5805Z" fill="black"></path></svg>');
+}
+
+.cards-feature > ul > li:hover a.cards-feature-cta::after {
+  transform: translateX(4px);
+}
+
+/* tablet: two across */
+@media (width >= 600px) {
+  .cards-feature > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* desktop: four across, matching the source card height rhythm */
+@media (width >= 900px) {
+  .cards-feature > ul {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .cards-feature .cards-feature-card-body {
+    min-height: 250px;
+    padding: 24px;
+  }
+
+  .cards-feature .cards-feature-card-body h3 {
+    font-size: 28px;
+    line-height: 1.15;
+  }
+
+  .cards-feature .cards-feature-card-body p {
+    font-size: 22px;
+    line-height: 1.3;
+  }
+}
