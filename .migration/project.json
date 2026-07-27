@@ -2,7 +2,8 @@
   "sites": {
     "eds-poc1": {
       "previewOrg": "vipult2022",
-      "previewSite": "eds-poc1"
+      "previewSite": "eds-poc1",
+      "libraryUrl": "https://content.da.live/vipult2022/eds-poc1/docs/library/blocks.json"
     }
   }
 }
