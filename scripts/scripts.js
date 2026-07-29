@@ -9,8 +9,19 @@ import {
   loadSection,
   loadSections,
   loadCSS,
+  getMetadata,
   buildBlock,
 } from './aem.js';
+
+/**
+ * Loads the per-site theme stylesheet, based on the `theme` bulk-metadata
+ * value (e.g. site's /metadata sheet on da.live) applied by decorateTemplateAndTheme.
+ * @param {string} theme The theme name, e.g. 'broadridge-cit'
+ */
+async function loadThemeCSS(theme) {
+  if (!theme) return;
+  await loadCSS(`${window.hlx.codeBasePath}/styles/themes/${theme}.css`);
+}
 
 /**
  * load fonts.css and set a session storage flag
@@ -135,13 +146,16 @@ export function decorateMain(main) {
  * @param {Element} doc The container element
  */
 async function loadEager(doc) {
-  document.documentElement.lang = 'en';
+  document.documentElement.lang = getMetadata('lang') || 'en';
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
     document.body.classList.add('appear');
-    await loadSection(main.querySelector('.section'), waitForFirstImage);
+    await Promise.all([
+      loadThemeCSS(getMetadata('theme')),
+      loadSection(main.querySelector('.section'), waitForFirstImage),
+    ]);
   }
 
   try {

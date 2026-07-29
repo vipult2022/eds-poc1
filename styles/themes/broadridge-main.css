@@ -1,0 +1,5 @@
+/* Theme: broadridge-main — POC override of shared design tokens from styles.css */
+:root {
+  --link-color: #3b63fb;
+  --link-hover-color: #1d3ecf;
+}
