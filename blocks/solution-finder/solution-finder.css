@@ -1,0 +1,106 @@
+main .solution-finder {
+  --solution-finder-border: var(--dark-color);
+
+  display: grid;
+  gap: 1.5rem;
+}
+
+main .solution-finder .solution-finder-form {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: var(--light-color);
+}
+
+main .solution-finder .solution-finder-field {
+  display: grid;
+  gap: 0.25rem;
+}
+
+main .solution-finder .solution-finder-field label {
+  font-size: var(--body-font-size-xs);
+  font-weight: 600;
+}
+
+main .solution-finder .solution-finder-field input,
+main .solution-finder .solution-finder-field select {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid var(--solution-finder-border);
+  border-radius: 4px;
+  padding: 0.5rem;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+main .solution-finder .solution-finder-field input:focus-visible,
+main .solution-finder .solution-finder-field select:focus-visible {
+  outline: 3px solid var(--link-color);
+  outline-offset: 2px;
+}
+
+main .solution-finder .solution-finder-clear {
+  align-self: end;
+  min-height: 44px;
+}
+
+main .solution-finder .solution-finder-status {
+  margin: 0;
+  font-weight: 600;
+}
+
+main .solution-finder .solution-finder-results {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+main .solution-finder .solution-finder-results article {
+  height: 100%;
+  box-sizing: border-box;
+  border: 1px solid var(--solution-finder-border);
+  padding: 1rem;
+  background-color: var(--background-color);
+}
+
+main .solution-finder .solution-finder-results h2 {
+  margin-top: 0;
+  font-size: var(--heading-font-size-m);
+}
+
+main .solution-finder .solution-finder-attributes {
+  font-size: var(--body-font-size-xs);
+  font-weight: 600;
+}
+
+@media (width >= 600px) {
+  main .solution-finder .solution-finder-form {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  main .solution-finder .solution-finder-search {
+    grid-column: 1 / -1;
+  }
+
+  main .solution-finder .solution-finder-results {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (width >= 900px) {
+  main .solution-finder .solution-finder-form {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  main .solution-finder .solution-finder-search {
+    grid-column: span 2;
+  }
+
+  main .solution-finder .solution-finder-results {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
